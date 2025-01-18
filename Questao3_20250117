@@ -1,0 +1,44 @@
+/*3 - Tem-se um conjunto de dados contendo altura e sexo (“M” ou “F”)
+de 50 pessoas, fazer um programa que calcule e escreva:
+a) a maior e a menor altura do grupo
+b) média de altura das mulheres
+c) o número de homens */
+
+import java.util.Random;
+public class Questao3_20250117 {
+    public static void main(String[] args) {
+        Random random = new Random();
+        int qtdMulher = 0, qtdHomem = 0;
+        double somaAlturaF = 0, menorAltura = Double.MAX_VALUE, maiorAltura = Double.MIN_VALUE;
+
+        double [] alturas = new double[50]; 
+        char [] sexo = new char[50];
+
+        for(int i  = 0; i < 50; i++){
+            alturas[i] = 1.50 + (random.nextDouble() * 0.5);
+            if(alturas[i] > maiorAltura){
+                maiorAltura = alturas[i];
+            } 
+            if(alturas[i] < menorAltura){
+                menorAltura = alturas[i];
+            }
+            
+            int numeroAleatorio = random.nextInt(2);
+            if(numeroAleatorio == 0){
+                sexo[i] = 'M';
+                qtdHomem++;
+            }
+            else{
+                sexo[i] = 'F';
+                somaAlturaF += alturas[i];
+                qtdMulher++;
+            }
+         
+        }
+        double mediaAlturaMulher = somaAlturaF/qtdMulher;
+        
+        System.out.printf("Maior altura:%.2f \nMenor altura: %.2f ", maiorAltura, menorAltura);
+        System.out.printf("\nA médida de alturas das mulheres é: %.2f", mediaAlturaMulher);
+        System.out.printf("\nO número de homens registrados foi de: %d", qtdHomem);
+    }
+}
