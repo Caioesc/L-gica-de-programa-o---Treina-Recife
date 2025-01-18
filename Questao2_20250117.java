@@ -18,27 +18,31 @@ public class Questao2_20250117 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         char sexo, corOlhos;
-        int idade = 0, maiorIdade = 0, numeroPessoas = 0, pessoasNoPadrao = 0;
+        int idade = 0, maiorIdade = 0;
+        double percentPessoasPadrao, numeroPessoas = 0, pessoasNoPadrao = 0;
         
         while (idade != -1){
 
             do { 
-                System.out.println("Informe o sexo: (F - femimnino e M - Masculino)");
+                System.out.println("Informe o sexo (F - femimnino e M - Masculino): ");
                 sexo = sc.next().toUpperCase().charAt(0);
                 if(sexo != 'F' && sexo != 'M'){
                     System.out.println("Informe um sexo válido!");
                 }
             } while (sexo != 'F' && sexo != 'M');
             do { 
-                System.out.println("Informe a cor dos olhos: (A-Azul, V-Verde, C-Castanho)");
+                System.out.println("Informe a cor dos olhos (A-Azul, V-Verde, C-Castanho):");
                 corOlhos = sc.next().toUpperCase().charAt(0);
                 if(corOlhos != 'A' && corOlhos != 'V' && corOlhos != 'C'){
                     System.out.println("Informe uma cor válida!");
                 }
             } while (corOlhos != 'A' && corOlhos != 'V' && corOlhos != 'C');
             do { 
-                System.out.println("Informe a idade: ");
+                System.out.println("Informe a idade (-1 para encerrar): ");
                 idade = sc.nextInt();
+                if(idade > maiorIdade){
+                    maiorIdade = idade;
+                }
                 if(idade < 0 && idade > 130){
                     System.out.println("Informe uma idade válida!");
                 }
@@ -49,8 +53,13 @@ public class Questao2_20250117 {
                 pessoasNoPadrao++;
             }
         }    
+        sc.close();
         numeroPessoas--;
-        System.out.println(numeroPessoas);
+        percentPessoasPadrao = (pessoasNoPadrao/numeroPessoas)*100;
+        System.out.println("\nA maior idade registrada foi: " + maiorIdade);
+        System.out.println("\nO percentual de indivíduos do sexo feminino cuja idade está entre 18 e\r\n" + //
+                        "35 anos inclusive e que tenham olhos verdes é de: " + percentPessoasPadrao + "%");
+
 
     }
     
